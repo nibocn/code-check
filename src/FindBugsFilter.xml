@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <!-- 对象赋为null值后,没有被重新赋值 (*必检查项) -->
+        <Bug pattern="NP_ALWAYS_NULL"/>
+    </Match>
+    <Match>
+        <!-- 调用String.toString()是多余的操作,只要使用String就可以了 (*必检查项) -->
+        <Bug pattern="DM_STRING_TOSTRING"/>
+    </Match>
+    <Match>
+        <!-- 当对象为null时调用对象属性 (*必检查项) -->
+        <Bug pattern="NP_LOAD_OF_KNOWN_NULL_VALUE"/>
+    </Match>
+
+    <Match>
+        <!-- 调用equals方法比较不同类型的类 (*必检查项) -->
+        <Bug pattern="EC_UNRELATED_TYPES"/>
+    </Match>
+
+    <Match>
+        <!-- 局部变量赋值,但在其后的没有对它做任何使用 (*必检查项) -->
+        <Bug pattern="DLS_DEAD_LOCAL_STORE"/>
+    </Match>
+
+    <Match>
+        <!-- 进行对象为空的检查是没用的或检查顺序是错误的 (*必检查项) -->
+        <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE"/>
+    </Match>
+
+    <Match>
+        <!-- 调用数组的toString()方法,产生的结果形如[@ 16f0472并不能显示数组的真实内容 (*必检查项) -->
+        <Bug pattern="DMI_INVOKING_TOSTRING_ON_ARRAY"/>
+    </Match>
+
+    <Match>
+        <!-- 对参数为null的情况没做处理 (*必检查项) -->
+        <Bug pattern="NP_NULL_PARAM_DEREF "/>
+    </Match>
+
+    <Match>
+        <!-- 对象可能没有重新赋值,并且又在后面的代码中使用此对象的属性 (*必检查项) -->
+        <Bug pattern="NP_NULL_ON_SOME_PATH"/>
+    </Match>
+
+    <Match>
+        <!-- 在异常null值处理分支调用的方法上,可能存在对象去除引用操作 (*必检查项),注:此项代码 示例代码没有,大家
+        可根据实际检查结果和代码结构来进行修改 -->
+        <Bug pattern="NP_NULL_ON_SOME_PATH_EXCEPTION"/>
+    </Match>
+
+    <Match>
+        <!-- 空指针引用上调用去除引用方法，将发生空指针异常 (*必检查项),注:此检查项与 NP_NULL_ON_SOME_PATH_EXCEPTION比较类似 -->
+        <Bug pattern=" NP_ALWAYS_NULL_EXCEPTION "/>
+    </Match>
+
+    <Match>
+        <!-- 继承同一父类的子类不能使用相同的名称,即使它们位于不同的包中 (*必检查项),注:此 检查项相对比较简单就不再给出示例了 -->
+        <Bug pattern="NM_SAME_SIMPLE_NAME_AS_SUPERCLASS"/>
+    </Match>
+
+    <Match>
+        <!-- Comparator接口没有实现Serializable接口 (*非必检查项) -->
+        <Bug pattern="SE_COMPARATOR_SHOULD_BE_SERIALIZABLE "/>
+    </Match>
+
+    <Match>
+        <!-- 方法名称须以小写字母开头 (*必检查项) -->
+        <Bug pattern="NM_METHOD_NAMING_CONVENTION"/>
+    </Match>
+    <Match>
+        <!-- 相同类型的对象比较值是否相等时使用equals方法来比较而不是== (*必检查项) -->
+        <Bug pattern="RC_REF_COMPARISON"/>
+    </Match>
+
+    <Match>
+        <!-- 整型除法强制转换为double或者float类型 -->
+        <Bug pattern="ICAST_IDIV_CAST_TO_DOUBLE"/>
+    </Match>
+    <Match>
+        <!-- 在try/catch块中捕获异常，但是异常没有在catch语句中抛出而RuntimeException又没有明确的被捕获
+        这个检查项主要是检查对异常进行了捕获但却没有进行必要的处理,如:抛出异常或记录异常信息,
+            注意:从检查的结果来看,这个检查项有可能存在误报的情况,但对于确实没有记录异常或抛出异常的信息一定要处理 (*必检查项) -->
+        <Bug pattern="REC_CATCH_EXCEPTION"/>
+    </Match>
+
+    <Match>
+        <!-- 强制类型转换可能存在失败的情况 (*非必检查项) 此检查项根据代码的实际情况去看是否存在强制类型转换失败
+        的情况,不要求一定要修改 -->
+        <Bug pattern="BC_UNCONFIRMED_CAST"/>
+    </Match>
+
+    <Match>
+        <!-- 当遍历Map类型时，使用entrySet的迭代器比使用keySet的迭代器效率要高 (*非必检查项) 对于此检查项检查出的
+        问题根据代码实际情况在可以修改的情况下建议都修改 -->
+        <Bug pattern="WMI_WRONG_MAP_ITERATOR"/>
+    </Match>
+
+    <Match>
+        <!-- 方法获得了当前的对象锁,但是在所有的异常处理中始终没有释放它 (*必检查项) -->
+        <Bug pattern="UL_UNRELEASED_LOCK_EXCEPTION_PATH"/>
+    </Match>
+    <Match>
+        <!-- 在循环中构建一个StringBuffer(StringBuilder)对象从性能上讲比使用String对象更快 (*必检查项) -->
+        <Bug pattern="SBSC_USE_STRINGBUFFER_CONCATENATION"/>
+    </Match>
+
+    <Match>
+        <!-- 当值介于-127~127时使用Integer.valueOf()比new Integer()效率更高(大约快3.5倍), 包括(Long,
+            Integer, Short, Character, Byte) (*必检查项) -->
+        <Bug pattern="DM_NUMBER_CTOR"/>
+    </Match>
+    <!-- <Match> -->
+    <!-- 类中所包含的final属性字段在编译器中初始化为静态的值, 考虑在定义时就把它定义为static类型的 (*非必检查项) -->
+    <!-- <Bug pattern="SS_SHOULD_BE_STATIC"/> -->
+    <!-- </Match> -->
+
+    <Match>
+        <!-- 检查逻辑运算符操作返回的标识,例如((event.detail & SWT.SELECTED) > 0),建议采用!=0代替>0 -->
+        <Bug pattern="BIT_SIGNED_CHECK_HIGH_BIT"/>
+    </Match>
+
+    <Match>
+        <!-- 用==或者!=方法去比较String类型的参数 (*必检查项) 注意:是当参数为字符串时 -->
+        <Bug pattern="ES_COMPARING_PARAMETER_STRING_WITH_EQ"/>
+    </Match>
+    <Match>
+        <!-- 用==或者！=去比较String类型的对象 (*必检查项) -->
+        <Bug pattern="ES_COMPARING_STRINGS_WITH_EQ"/>
+    </Match>
+
+    <Match>
+        <!-- 数组对象使用equals方法和非数组对象进行比较, 即使比较的双方都是数组对象也不应该使用equals方法, 而应该比较它
+        们的内容是否相等使用java.util.Arrays.equals(Object[], Object[]) (*必检查项) -->
+        <Bug pattern="EC_ARRAY_AND_NONARRAY"/>
+    </Match>
+
+    <Match>
+        <!-- 两个数组对象使用equals方法进行比较, 这是不正确的而应该比较它们的内容是否相等 java.util.Arrays.equals(Object[],
+            Object[]) (*必检查项) -->
+        <Bug pattern="EC_BAD_ARRAY_COMPARE"/>
+    </Match>
+    <Match>
+        <!-- 调用equals的对象可能为null (*必检查项) -->
+        <Bug pattern="EC_NULL_ARG"/>
+    </Match>
+</FindBugsFilter>
+
+
