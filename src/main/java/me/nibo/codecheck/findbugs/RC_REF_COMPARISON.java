@@ -1,4 +1,4 @@
-package me.nibo.codecheck;
+package me.nibo.codecheck.findbugs;
 
 /**
  * 相同类型的对象比较值是否相等时使用equals方法来比较而不是==

@@ -1,4 +1,4 @@
-package me.nibo.codecheck;
+package me.nibo.codecheck.findbugs;
 
 /**
  * 对象可能没有重新赋值,并且又在使用此对象的方法或属性

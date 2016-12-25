@@ -1,4 +1,4 @@
-package me.nibo.codecheck;
+package me.nibo.codecheck.findbugs;
 
 /**
  * 调用equals方法比较不同类型的类 示例

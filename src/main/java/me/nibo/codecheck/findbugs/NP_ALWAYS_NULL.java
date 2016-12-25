@@ -1,4 +1,4 @@
-package me.nibo.codecheck;
+package me.nibo.codecheck.findbugs;
 
 /**
  * 对象赋为null值后,没有被重新赋值的示例

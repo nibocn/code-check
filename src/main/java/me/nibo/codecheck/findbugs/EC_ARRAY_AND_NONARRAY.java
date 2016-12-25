@@ -1,4 +1,4 @@
-package me.nibo.codecheck;
+package me.nibo.codecheck.findbugs;
 
 /**
  * 数组对象使用equals方法和非数组对象进行比较, 即使比较的双方都是数组对象也不应该使用equals方法, 而应该比较它们的

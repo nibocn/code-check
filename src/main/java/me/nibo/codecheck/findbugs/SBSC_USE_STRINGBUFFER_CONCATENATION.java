@@ -1,4 +1,4 @@
-package me.nibo.codecheck;
+package me.nibo.codecheck.findbugs;
 
 /**
  * 在循环中构建一个StringBuffer(StringBuilder)对象从性能上讲比使用String对象更快

@@ -1,4 +1,4 @@
-package me.nibo.codecheck;
+package me.nibo.codecheck.findbugs;
 
 /**
  * 两个数组对象使用equals方法进行比较, 这是不正确的而应该比较它们的内容是否相等 java.util.Arrays.equals(Object[], Object[])

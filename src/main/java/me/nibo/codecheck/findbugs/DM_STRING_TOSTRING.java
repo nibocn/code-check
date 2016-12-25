@@ -1,4 +1,4 @@
-package me.nibo.codecheck;
+package me.nibo.codecheck.findbugs;
 
 /**
  * 调用String.toString()是多余的操作,只要使用String就可以了示例

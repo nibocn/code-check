@@ -21,6 +21,7 @@
         <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
         <maven.site.plugin.version>3.6</maven.site.plugin.version>
         <findbugs.maven.plugin.version>3.0.4</findbugs.maven.plugin.version>
+        <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
     </properties>
 
     <dependencies>
@@ -86,9 +87,11 @@
                 <version>${findbugs.maven.plugin.version}</version>
                 <configuration>
                     <!-- 增加自定义的过滤规则文件 -->
-                    <includeFilterFile>${project.basedir}/src/FindBugsFilter.xml</includeFilterFile>
+                    <includeFilterFile>${project.basedir}/FindBugsFilter.xml</includeFilterFile>
                     <effort>Max</effort>
+                    <threshold>Low</threshold>
                     <!--<threshold>Medium</threshold>-->
+                    <!--<threshold>High</threshold>-->
                     <xmlOutput>true</xmlOutput>
                     <failOnError>true</failOnError>
                 </configuration>
@@ -100,13 +103,38 @@
                         <phase>compile</phase>
                         <goals>
                             <!-- Findbugs 验证不通过也正常编译 -->
-                            <goal>findbugs</goal>
+                            <!-- <goal>findbugs</goal> -->
                             <!-- Findbugs 验证不通过编译失败 -->
-                            <!--<goal>check</goal>-->
+                            <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven.checkstyle.plugin.version}</version>
+                <configuration>
+                    <!-- 自定义检查规则文件 -->
+                    <configLocation>${project.basedir}/CheckstyleRules.xml</configLocation>
+                    <encoding>UTF-8</encoding>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>verify-style</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
